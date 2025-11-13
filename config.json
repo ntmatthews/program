@@ -1,0 +1,6 @@
+{
+  "password_enabled": false,
+  "password_hash": null,
+  "auto_backup": true,
+  "theme": "default"
+}
