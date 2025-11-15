@@ -399,6 +399,32 @@ portable_database/
 **SQLite Documentation:**
 - https://sqlite.org/docs.html
 
+## ⌨️ Built-in Terminal (Command Mode)
+
+Open it via Tools → Open Terminal. You can run commands to do everything without the GUI dialogs.
+
+Commands:
+- help: Show available commands
+- tables: List tables
+- use <table>: Select current table
+- schema [table]: Show column names/types
+- select [table] [limit N]: Print rows (includes rowid)
+- insert key=value ...: Insert into current table
+- update id=<rowid> key=value ...: Update a row
+- delete id=<rowid>: Delete a row
+- sql <query>: Run raw SQL
+- export csv <path> [table]: Export selected table to CSV
+- export json <path> [table]: Export selected table to JSON
+- import csv <path> <table>: Import CSV into a table (creates if needed)
+- import json <path> <table>: Import JSON array into a table (creates if needed)
+- backup: Create a timestamped DB backup in the folder
+- info: Show database summary
+- clear: Clear terminal output
+
+Tips:
+- Use quotes for values containing spaces: insert name="John Doe" notes="VIP customer"
+- If you omit a table where allowed, the current table from `use` is used.
+
 ## 📝 License
 
 This software is provided as-is for personal and commercial use.
@@ -431,3 +457,33 @@ Feel free to modify and distribute.
 Works on any computer, requires no installation, and keeps your data secure and portable.
 
 Perfect for anyone who needs to manage data on the go! 🎉
+
+## 🧰 All-in-One Executable (No Setup)
+
+Want a single file that runs without installing Python on the target machine? Build a standalone executable with PyInstaller.
+
+macOS:
+```
+chmod +x build/mac/build.sh
+./build/mac/build.sh
+# Output: dist/PortableDB (binary) and dist/PortableDB.app (drag-and-drop app)
+```
+
+Windows (run on Windows):
+```
+build\win\build.bat
+# Output: dist\PortableDB.exe
+```
+
+Linux:
+```
+chmod +x build/linux/build.sh
+./build/linux/build.sh
+# Output: dist/PortableDB
+```
+
+Notes:
+- End users double-click the built file; no Python needed.
+- The app stores `portable_data.db` and `config.json` next to the executable for true USB portability.
+- macOS may show a security prompt; right-click → Open on first run. For wider distribution, consider codesigning and notarization.
+- Developer-only dependency: `PyInstaller` (see `requirements-dev.txt`).
